@@ -1,0 +1,30 @@
+* {
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 8fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr 8fr;
+  background-color: #ffbe98;
+}
+
+.navBar {
+  grid-area: 2 / 3 / 3 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lucida Handwriting", cursive;
+  font-weight: 800;
+  font-size: xx-large;
+}
+
+#calendar {
+  height: 600px;
+  width: 100%;
+  grid-area: 3 / 3 / 4 / 4;
+  border: solid 1px black;
+  font-family: sans-serif Arial;
+}
