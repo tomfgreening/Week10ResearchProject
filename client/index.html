@@ -11,6 +11,76 @@
     <div id="calendar" role="button"></div>
     <div class="navBar">
       <nav>How are you today?</nav>
+      <form id="moods">
+        <label for="date">Date</label>
+        <input
+          type="text"
+          placeholder="Date"
+          name="date"
+          id="date"
+          required
+        />
+        <label for="mood">How are you feeling today?</label>
+        <input
+          type="text"
+          placeholder="Please select"
+          name="mood"
+          id="mood"
+          required
+        />
+        <label for="comment">Comments</label>
+        <input
+          type="text"
+          size="50"
+          style="width: 400px; height: 40px;"
+          placeholder="Comments"
+          name="comment"
+          id="comment"
+          required
+        />
+        <label for="mood">Emotion:</label>
+        <select id="moodSelect"></select>
+          <option value="">Select Mood</option>
+          <option value="Happy">Happy</option>
+          <option value="Sad">Sad</option>
+          <option value="Angry">Angry</option>
+          <option value="Calm">Calm</option>
+          <option value="Anxious">Anxious</option>
+          <option value="Energetic">Energetic</option>
+          <option value="Tired">Tired</option>
+        </select>
+          <button type="submit">Submit</button>
     </div>
+
+    <script>
+        function changeDateColour() {
+            const moodSelect = document.getElementById("moodSelect");
+            const mood = moodSelect.value;
+            const calendar = document.getElementById("calendar");
+
+            calendar.style.backgroundColor = "";
+
+            if (mood === "happy") {
+                calendar.style.backgroundColor = "yellow";
+            } else if (mood === "sad") {
+                calendar.style.backgroundColor = "blue";
+            } else if (mood === "angry") {
+                calendar.style.backgroundColor = "red";
+            } else if (mood === "calm") {
+                calendar.style.backgroundColor = "green";
+              } else if (mood === "anxious") {
+                calendar.style.backgroundColor = "orange";
+            } else if (mood === "energetic") {
+                calendar.style.backgroundColor = "purple";
+            } else if (mood === "tired") {
+                calendar.style.backgroundColor = "brown";
+            } else {
+                calendar.style.backgroundColor = "";
+            }
+        }
+
+        document.getElementById("moodSelect").addEventListener("change", changeDateColour);
+    </script>
+
   </body>
 </html>

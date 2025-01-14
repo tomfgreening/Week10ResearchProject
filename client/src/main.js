@@ -65,6 +65,7 @@ function testStuff() {
     // Completed
 
     const script = document.createElement("script");
+
     script.innerHTML = `const indivBox${entry.date} = document.querySelector("#box${entry.date}");
     indivBox${entry.date}.style.cursor = "pointer";
     console.log(${entry.date});
@@ -74,6 +75,7 @@ function testStuff() {
     ;
     `;
     script.defer = true;
+
     calendarIndivBox.appendChild(script);
   });
 }
