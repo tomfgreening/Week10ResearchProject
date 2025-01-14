@@ -29,6 +29,11 @@ const tempArray = [
   { date: "28", emotion: "Happy", comment: "None" },
 ];
 
+async function fetchMoodEntry() {
+  const result = await fetch("http://localhost:8080/moodthing");
+  // need to json and stringify data.
+}
+
 function testStuff() {
   tempArray.slice(-35).forEach((entry) => {
     const calendar = document.getElementById("calendar");
@@ -122,12 +127,3 @@ function handleSubmitMessageForm(event) {
   console.log(formValues);
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
-
-app.post("/moodTrackerEntry", async (req, res) => {
-  const data = req.body.formValues;
-  const query = await db.query(
-    `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
-    [data.date, data.mood, data.comment, data.emotion]
-  );
-  await res.json(query.rows);
-});
