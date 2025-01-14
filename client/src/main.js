@@ -53,7 +53,6 @@ const tempArray = [
   { date: "19", emotion: "Sad", comment: "None" },
   { date: "20", emotion: "Angry", comment: "None" },
   { date: "21", emotion: "Calm", comment: "None" },
-  { date: "21", emotion: "Anxious", comment: "None" },
   { date: "22", emotion: "Tired", comment: "None" },
   { date: "23", emotion: "Energetic", comment: "None" },
   { date: "24", emotion: "Calm", comment: "None" },
@@ -63,7 +62,7 @@ const tempArray = [
   { date: "28", emotion: "Happy", comment: "None" },
 ];
 
-function testShit() {
+function testStuff() {
   tempArray.slice(-35).forEach((entry) => {
     const calendar = document.getElementById("calendar");
     const calendarIndivBox = document.createElement("div");
@@ -95,10 +94,12 @@ function testShit() {
     // Completed
 
     const script = document.createElement("script");
-    script.innerHTML = `const box = document.getElementByID('box${entry.date}');
-    console.log(box);`;
+    // script.setAttribute("defer");
+    script.innerHTML = `
+    const indivBox${entry.date} = document.querySelector('#box${entry.date}');
+    console.log(${entry.date});`;
     calendarIndivBox.appendChild(script);
   });
 }
 
-testShit();
+testStuff();
