@@ -6,81 +6,77 @@
     <title>Mood Thing</title>
     <script defer src="./src/main.js"></script>
     <link rel="stylesheet" href="./src/style.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#datepicker").datepicker();
+      });
+    </script>
   </head>
   <body>
     <div id="calendar" role="button"></div>
     <div class="navBar">
       <nav>How are you today?</nav>
     </div>
-    <div id="formBox">      <form id="moods">
-      <label for="date">Date</label>
-      <input
-        type="text"
-        placeholder="Date"
-        name="date"
-        id="date"
-        required
-      />
-      <label for="mood">How are you feeling today?</label>
-      <input
-        type="text"
-        placeholder="Please select"
-        name="mood"
-        id="mood"
-        required
-      />
-      <label for="comment">Comments</label>
-      <input
-        type="text"
-        size="50"
-        style="width: 400px; height: 40px;"
-        placeholder="Comments"
-        name="comment"
-        id="comment"
-        required
-      />
-      <label for="mood">Emotion:</label>
-      <select id="moodSelect"></select>
-        <option value="">Select Mood</option>
-        <option value="Happy">Happy</option>
-        <option value="Sad">Sad</option>
-        <option value="Angry">Angry</option>
-        <option value="Calm">Calm</option>
-        <option value="Anxious">Anxious</option>
-        <option value="Energetic">Energetic</option>
-        <option value="Tired">Tired</option>
-      </select>
+    <div id="formBox">
+      <form id="moods">
+        <label for="date">Date</label>
+        <input type="text" placeholder="Date" id="datepicker" required />
+        <label for="mood">How are you feeling today?</label>
+        <select id="moodSelect" name="mood">
+          <option value="">Select Mood</option>
+          <option value="Happy">Happy</option>
+          <option value="Sad">Sad</option>
+          <option value="Angry">Angry</option>
+          <option value="Calm">Calm</option>
+          <option value="Anxious">Anxious</option>
+          <option value="Energetic">Energetic</option>
+          <option value="Tired">Tired</option>
+        </select>
+        <label for="comment">Comments</label>
+        <input
+          type="text"
+          size="50"
+          style="width: 400px; height: 40px"
+          placeholder="Comments"
+          name="comment"
+          id="comment"
+          required
+        />
         <button type="submit">Submit</button>
-        </form></div>
+      </form>
+    </div>
     <script>
-        function changeDateColour() {
-            const moodSelect = document.getElementById("moodSelect");
-            const mood = moodSelect.value;
-            const calendar = document.getElementById("calendar");
+      function changeDateColour() {
+        const moodSelect = document.getElementById("moodSelect");
+        const mood = moodSelect.value;
+        const calendar = document.getElementById("calendar");
 
-            calendar.style.backgroundColor = "";
+        calendar.style.backgroundColor = "";
 
-            if (mood === "happy") {
-                calendar.style.backgroundColor = "yellow";
-            } else if (mood === "sad") {
-                calendar.style.backgroundColor = "blue";
-            } else if (mood === "angry") {
-                calendar.style.backgroundColor = "red";
-            } else if (mood === "calm") {
-                calendar.style.backgroundColor = "green";
-              } else if (mood === "anxious") {
-                calendar.style.backgroundColor = "orange";
-            } else if (mood === "energetic") {
-                calendar.style.backgroundColor = "purple";
-            } else if (mood === "tired") {
-                calendar.style.backgroundColor = "brown";
-            } else {
-                calendar.style.backgroundColor = "";
-            }
+        if (mood === "Happy") {
+          calendar.style.backgroundColor = "yellow";
+        } else if (mood === "Sad") {
+          calendar.style.backgroundColor = "blue";
+        } else if (mood === "Angry") {
+          calendar.style.backgroundColor = "red";
+        } else if (mood === "Calm") {
+          calendar.style.backgroundColor = "green";
+        } else if (mood === "Anxious") {
+          calendar.style.backgroundColor = "orange";
+        } else if (mood === "Energetic") {
+          calendar.style.backgroundColor = "purple";
+        } else if (mood === "Tired") {
+          calendar.style.backgroundColor = "brown";
+        } else {
+          calendar.style.backgroundColor = "";
         }
+      }
 
-        document.getElementById("moodSelect").addEventListener("change", changeDateColour);
+      document
+        .getElementById("moodSelect")
+        .addEventListener("change", changeDateColour);
     </script>
-
   </body>
 </html>
