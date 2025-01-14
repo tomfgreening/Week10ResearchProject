@@ -58,25 +58,49 @@ function testStuff() {
       }
     }
     indivBoxColor();
+    const popupOver = document.querySelector("#popupOver");
     const popupBox = document.createElement("div");
     popupBox.setAttribute("class", "popBox");
     popupBox.setAttribute("id", `popupBox${entry.date}`);
-    calendar.appendChild(popupBox);
+    popupBox.style.display = "none";
+    popupOver.appendChild(popupBox);
+    const popupClose = document.createElement("button");
+    popupClose.setAttribute("id", `popupClose${entry.date}`);
+    popupClose.setAttribute("class", `popupClose`);
+    popupBox.appendChild(popupClose);
     // Completed
 
-    const script = document.createElement("script");
+    popupClose.style.cursor = "pointer";
+    popupClose.innerHTML = `<script>
 
-    script.innerHTML = `const indivBox${entry.date} = document.querySelector("#box${entry.date}");
+    </script>
+    `;
+
+    const calendarScript = document.createElement("script");
+
+    calendarScript.innerHTML = `const indivBox${entry.date} = document.querySelector("#box${entry.date}");
     indivBox${entry.date}.style.cursor = "pointer";
     console.log(${entry.date});
     indivBox${entry.date}.addEventListener("click", function(){
     console.log("clicked ${entry.date}");
+    const popupBox2 = document.querySelector("#popupBox${entry.date}");
+    console.log(popupBox2);
+    const popupBoxAll = document.querySelector(".popbox");
+    popupBox${entry.date}.style.display = "flex";
+    popupOver.style.gridArea = "2 / 2 / 4 / 5";
+    const popupCloseButton = document.querySelector("#popupClose${entry.date}");
+    popupCloseButton.addEventListener("click", function (){
+    console.log('Worked');
+    popupOver.style.gridArea = "2 / 2 / 2 / 2";
+    popupBox${entry.date}.style.display = "none";})
+    ;
+    
+    
 });
     ;
     `;
-    script.defer = true;
-
-    calendarIndivBox.appendChild(script);
+    calendarScript.defer = true;
+    calendarIndivBox.appendChild(calendarScript);
   });
 }
 
