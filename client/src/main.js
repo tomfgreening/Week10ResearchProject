@@ -31,15 +31,21 @@ const tempArray = [
 
 function testStuff() {
   tempArray.slice(-35).forEach((entry) => {
+    // Consts
+    const popupOver = document.querySelector("#popupOver");
     const calendar = document.getElementById("calendar");
     const calendarIndivBox = document.createElement("div");
     const calendarDate = document.createElement("p");
+    const popupBox = document.createElement("div");
+    const popupBoxText = document.createElement("p");
+    const popupClose = document.createElement("button");
+    const calendarScript = document.createElement("script");
+
     calendarIndivBox.setAttribute("class", "calendarIndivBox");
     calendarIndivBox.setAttribute("id", `box${entry.date}`);
     calendarDate.setAttribute("class", "calendarDate");
     calendarDate.textContent = `${entry.date}`;
-    calendar.appendChild(calendarIndivBox);
-    calendarIndivBox.appendChild(calendarDate);
+
     function indivBoxColor() {
       if (entry.emotion == "Happy") {
         calendarIndivBox.style.backgroundColor = "#FFAE42";
@@ -58,25 +64,25 @@ function testStuff() {
       }
     }
     indivBoxColor();
-    const popupOver = document.querySelector("#popupOver");
-    const popupBox = document.createElement("div");
+
     popupBox.setAttribute("class", "popBox");
+
+    popupBoxText.setAttribute("class", "popupBoxText");
+    popupBoxText.textContent = `Date: ${entry.date}
+    Emotion: ${entry.emotion}
+    Comment: ${entry.comment}`;
+
     popupBox.setAttribute("id", `popupBox${entry.date}`);
     popupBox.style.display = "none";
-    popupOver.appendChild(popupBox);
-    const popupClose = document.createElement("button");
+
     popupClose.setAttribute("id", `popupClose${entry.date}`);
     popupClose.setAttribute("class", `popupClose`);
-    popupBox.appendChild(popupClose);
+
     // Completed
 
     popupClose.style.cursor = "pointer";
-    popupClose.innerHTML = `<script>
 
-    </script>
-    `;
-
-    const calendarScript = document.createElement("script");
+    // Embedded
 
     calendarScript.innerHTML = `const indivBox${entry.date} = document.querySelector("#box${entry.date}");
     indivBox${entry.date}.style.cursor = "pointer";
@@ -94,12 +100,18 @@ function testStuff() {
     popupOver.style.gridArea = "2 / 2 / 2 / 2";
     popupBox${entry.date}.style.display = "none";})
     ;
-    
-    
 });
     ;
     `;
     calendarScript.defer = true;
+
+    // Appends
+
+    calendar.appendChild(calendarIndivBox);
+    calendarIndivBox.appendChild(calendarDate);
+    popupBox.appendChild(popupBoxText);
+    popupOver.appendChild(popupBox);
+    popupBox.appendChild(popupClose);
     calendarIndivBox.appendChild(calendarScript);
   });
 }
