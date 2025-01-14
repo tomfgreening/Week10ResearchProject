@@ -95,7 +95,8 @@ function testShit() {
     // Completed
 
     const script = document.createElement("script");
-    script.innerHTML = `console.log(${entry.date})`;
+    script.innerHTML = `const box = document.getElementByID('box${entry.date}');
+    console.log(box);`;
     calendarIndivBox.appendChild(script);
   });
 }
