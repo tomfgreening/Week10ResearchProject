@@ -13,7 +13,19 @@ body {
 
 #formBox {
   grid-area: 5 / 3 / 6 / 4;
-  border: solid 1px black;
+  width: 1000px;
+  padding: 20px;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+#moodSelect {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: 5px;
+
 }
 
 #moods .navBar {
