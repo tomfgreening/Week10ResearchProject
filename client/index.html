@@ -11,47 +11,47 @@
     <div id="calendar" role="button"></div>
     <div class="navBar">
       <nav>How are you today?</nav>
-      <form id="moods">
-        <label for="date">Date</label>
-        <input
-          type="text"
-          placeholder="Date"
-          name="date"
-          id="date"
-          required
-        />
-        <label for="mood">How are you feeling today?</label>
-        <input
-          type="text"
-          placeholder="Please select"
-          name="mood"
-          id="mood"
-          required
-        />
-        <label for="comment">Comments</label>
-        <input
-          type="text"
-          size="50"
-          style="width: 400px; height: 40px;"
-          placeholder="Comments"
-          name="comment"
-          id="comment"
-          required
-        />
-        <label for="mood">Emotion:</label>
-        <select id="moodSelect"></select>
-          <option value="">Select Mood</option>
-          <option value="Happy">Happy</option>
-          <option value="Sad">Sad</option>
-          <option value="Angry">Angry</option>
-          <option value="Calm">Calm</option>
-          <option value="Anxious">Anxious</option>
-          <option value="Energetic">Energetic</option>
-          <option value="Tired">Tired</option>
-        </select>
-          <button type="submit">Submit</button>
     </div>
-
+    <div id="formBox">      <form id="moods">
+      <label for="date">Date</label>
+      <input
+        type="text"
+        placeholder="Date"
+        name="date"
+        id="date"
+        required
+      />
+      <label for="mood">How are you feeling today?</label>
+      <input
+        type="text"
+        placeholder="Please select"
+        name="mood"
+        id="mood"
+        required
+      />
+      <label for="comment">Comments</label>
+      <input
+        type="text"
+        size="50"
+        style="width: 400px; height: 40px;"
+        placeholder="Comments"
+        name="comment"
+        id="comment"
+        required
+      />
+      <label for="mood">Emotion:</label>
+      <select id="moodSelect"></select>
+        <option value="">Select Mood</option>
+        <option value="Happy">Happy</option>
+        <option value="Sad">Sad</option>
+        <option value="Angry">Angry</option>
+        <option value="Calm">Calm</option>
+        <option value="Anxious">Anxious</option>
+        <option value="Energetic">Energetic</option>
+        <option value="Tired">Tired</option>
+      </select>
+        <button type="submit">Submit</button>
+        </form></div>
     <script>
         function changeDateColour() {
             const moodSelect = document.getElementById("moodSelect");

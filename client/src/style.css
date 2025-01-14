@@ -7,11 +7,15 @@
 body {
   display: grid;
   grid-template-columns: 1fr 1fr 8fr 1fr 1fr;
-  grid-template-rows: 2fr 1fr 8fr;
+  grid-template-rows: 2fr 1fr 8fr 4fr;
   background-color: #ffbe98;
 }
 
-.navBar {
+#formBox {
+  grid-area: 5 / 3 / 6 / 4;
+}
+
+#moods .navBar {
   grid-area: 2 / 3 / 3 / 4;
   display: flex;
   justify-content: center;
@@ -36,7 +40,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 14.28571428571429%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 /1;
   background-color: blue;
   border: solid 1px black;
 }
