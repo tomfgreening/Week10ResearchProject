@@ -42,19 +42,19 @@ function testStuff() {
     calendarIndivBox.appendChild(calendarDate);
     function indivBoxColor() {
       if (entry.emotion == "Happy") {
-        calendarIndivBox.style.backgroundColor = "#FFAE42";
+        calendarIndivBox.style.backgroundColor = "#CE3375";
       } else if (entry.emotion == "Angry") {
-        calendarIndivBox.style.backgroundColor = "Crimson";
+        calendarIndivBox.style.backgroundColor = "#1b5091";
       } else if (entry.emotion == "Sad") {
-        calendarIndivBox.style.backgroundColor = "MediumPurple";
+        calendarIndivBox.style.backgroundColor = "#6ea1d4";
       } else if (entry.emotion == "Calm") {
-        calendarIndivBox.style.backgroundColor = "LightGreen";
+        calendarIndivBox.style.backgroundColor = "#60c8b3";
       } else if (entry.emotion == "Anxious") {
-        calendarIndivBox.style.backgroundColor = "HotPink";
+        calendarIndivBox.style.backgroundColor = "#e881a6";
       } else if (entry.emotion == "Tired") {
-        calendarIndivBox.style.backgroundColor = "Peru";
+        calendarIndivBox.style.backgroundColor = "#ffa74f";
       } else if (entry.emotion == "Energetic") {
-        calendarIndivBox.style.backgroundColor = "LightCyan";
+        calendarIndivBox.style.backgroundColor = "#279d9f";
       }
     }
     indivBoxColor();
