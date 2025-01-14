@@ -49,4 +49,12 @@ body {
   font-size: x-large;
 }
 
+.popBox {
+  display: flex;
+  height: 100px;
+  background-color: aliceblue;
+  font-family: sans-serif Arial;
+  font-size: x-large;
+}
+
 /* End of Append Stuff */
