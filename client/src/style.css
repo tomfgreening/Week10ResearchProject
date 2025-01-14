@@ -96,13 +96,17 @@ body {
 }
 
 .popBox {
-  display: flex;
   height: 100%;
   width: 100%;
   background-color: aliceblue;
   font-family: sans-serif Arial;
   font-size: x-large;
   grid-area: 2 / 2 / 2 / 2;
+}
+
+.popupBoxText {
+  display: flex;
+  grid-area: 3 / 3 / 4 / 4;
 }
 
 /* End of Append Stuff */
