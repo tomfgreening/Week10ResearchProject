@@ -36,6 +36,17 @@ body {
 
 /* Append Stuff */
 
+#popupOver {
+  grid-area: 2 / 2 / 3 / 3;
+  height: 100%;
+  width: 100%;
+}
+
+.popupClose {
+  height: 100px;
+  width: 100px;
+}
+
 .calendarIndivBox {
   display: flex;
   flex-wrap: wrap;
@@ -55,10 +66,12 @@ body {
 
 .popBox {
   display: flex;
-  height: 100px;
+  height: 100%;
+  width: 100%;
   background-color: aliceblue;
   font-family: sans-serif Arial;
   font-size: x-large;
+  grid-area: 2 / 2 / 2 / 2;
 }
 
 /* End of Append Stuff */
