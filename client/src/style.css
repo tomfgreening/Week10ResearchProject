@@ -49,9 +49,21 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
   font-family: sans-serif Arial;
   box-sizing: border-box;
   margin-top: 5px;
+}
+
+.ui-datepicker {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ui-datepicker td {
+  padding: 5px;
 }
 
 #moodSelect {
