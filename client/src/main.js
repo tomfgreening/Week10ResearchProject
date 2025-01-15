@@ -161,4 +161,3 @@ app.post("/moodTrackerEntry", async (req, res) => {
   await res.json(query.rows);
   console.log(data);
 });
-
