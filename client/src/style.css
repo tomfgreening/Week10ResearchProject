@@ -101,6 +101,10 @@ body {
   border: solid 1px black;
 }
 
+.calendarIndivBox:hover {
+  opacity: 80%;
+}
+
 .calendarDate {
   display: flex;
   align-self: center;
