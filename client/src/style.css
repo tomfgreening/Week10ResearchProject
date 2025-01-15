@@ -14,23 +14,25 @@ body {
 #formBox {
   grid-area: 5 / 3 / 6 / 4;
   width: 1000px;
-  padding: 100px;
+  padding: 75px;
   border: 1px solid black;
   box-sizing: border-box;
 }
 
 #datepicker {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
+  font-family: sans-serif Arial;
   box-sizing: border-box;
   margin-top: 5px;
 }
 
 #moodSelect {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
+  font-family: sans-serif Arial;
   box-sizing: border-box;
   margin-top: 5px;
 }
@@ -39,6 +41,7 @@ body {
   width: 100%;
   padding: 8px;
   font-size: 16px;
+  font-family: sans-serif Arial;
   box-sizing: border-box;
   margin-top: 5px;
 }
