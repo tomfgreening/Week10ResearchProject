@@ -96,8 +96,6 @@ body {
   text-decoration: underline;
 }
 
-
-
 .navBar a {
   color: black;
 }
@@ -109,8 +107,10 @@ body {
 #logo {
   display: flex;
   justify-content: right;
-  height: 15rem;
-  width: 15rem;
+  height: 10rem;
+  width: 10rem;
+  border: 2px solid white;
+  border-radius: 10px;
 }
 
 #calendar {
@@ -256,3 +256,31 @@ body {
 }
 
 /* End of Append Stuff */
+
+@media (max-width: 480px) {
+  .navBar {
+    display: grid;
+    grid-area: span 1/1/1/1;
+    justify-content: center;
+    width: 10px;
+    height: 10px;
+  }
+  #logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100px;
+    height: 100px;
+  }
+  #calendar {
+    display: flex;
+    justify-content: center;
+    width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 1024px) {
+}
