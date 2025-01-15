@@ -36,7 +36,7 @@ async function fetchMoodEntry() {
 
     const calendarDate = document.createElement("p");
     calendarDate.setAttribute("class", "calendarDate");
-    calendarDate.textContent = `${entry.date}`;
+    calendarDate.textContent = `${entry.date} ${entry.emoji}`;
     calendarIndivBox.appendChild(calendarDate);
 
     // Creates the pop up box and sets the display type to 'none' so it's invisible
@@ -162,9 +162,10 @@ messageForm.addEventListener("submit", handleSubmitMessageForm);
 
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
+  const hex = data.emoji.codePointAt(0).toString(16);
   const query = await db.query(
-    `INSERT INTO moods (date, mood, comment) VALUES ($1, $2, $3)`,
-    [data.date, data.mood, data.comment]
+    `INSERT INTO moods (date, mood, comment) VALUES ($1, $2, $3, $4)`,
+    [data.date, data.mood, data.comment, hex]
   );
   await res.json(query.rows);
   console.log(data);
