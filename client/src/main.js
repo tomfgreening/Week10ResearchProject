@@ -149,12 +149,17 @@ function handleSubmitMessageForm(event) {
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
 
+// Code to add pop up when user submits form
+
 const submitButton = document.getElementById("button");
 button.addEventListener("click", function () {
   // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
   // alert("Please complete the form!");
   // } else {
   alert("Your mood entry was submitted!");
+  messageForm.submit();
+  messageForm.reset();
+  return false;
 });
 
 app.post("/moodTrackerEntry", async (req, res) => {
