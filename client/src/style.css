@@ -11,8 +11,26 @@ body {
   background-color: #ffbe98;
 }
 
+#button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+.button.hover {
+  background-color: #04aa6d;
+  color: white;
+}
+
 #formBox {
-  grid-area: 5 / 3 / 6 / 4;
+  grid-area: 4 / 3 / 6 / 4;
   width: 1000px;
   padding: 75px;
   border: 1px solid black;
