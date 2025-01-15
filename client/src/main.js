@@ -39,6 +39,7 @@ async function fetchMoodEntry() {
     const calendarIndivBox = document.createElement("div");
     calendarIndivBox.setAttribute("class", "calendarIndivBox");
     calendarIndivBox.setAttribute("id", `box${entry.id}`);
+    calendarIndivBox.style.aspectRatio = "1/1";
     calendar.appendChild(calendarIndivBox);
 
     // Sets box colour based on Mood
@@ -76,6 +77,8 @@ async function fetchMoodEntry() {
     popupBox.setAttribute("id", `popupBox${entry.id}`);
     popupBox.setAttribute("class", "popBox");
     popupBox.style.display = "none";
+    popupOver.style.gridTemplateColumns = "1fr 7fr 1fr";
+    popupOver.style.gridTemplateRows = "1fr 7fr";
     popupOver.appendChild(popupBox);
 
     // Creates the close button for the popup box
@@ -84,6 +87,7 @@ async function fetchMoodEntry() {
     popupClose.setAttribute("id", `popupClose${entry.id}`);
     popupClose.setAttribute("class", `popupClose`);
     popupClose.style.cursor = "pointer";
+    popupClose.textContent = "X";
     popupBox.appendChild(popupClose);
 
     // Creates the text in the popup box
@@ -112,6 +116,7 @@ async function fetchMoodEntry() {
     const popupBoxAll = document.querySelector(".popbox");
     popupBox${entry.id}.style.display = "flex";
     popupOver.style.gridArea = "2 / 2 / 4 / 5";
+
 
     // Closes the associated pop up on clicking the close button
 
@@ -147,12 +152,12 @@ function handleSubmitMessageForm(event) {
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
 
-app.post("/moodTrackerEntry", async (req, res) => {
-  const data = req.body.formValues;
-  const query = await db.query(
-    `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
-    [data.date, data.mood, data.comment, data.emotion]
-  );
-  await res.json(query.rows);
-  console.log(data);
-});
+// app.post("/moodTrackerEntry", async (req, res) => {
+//   const data = req.body.formValues;
+//   const query = await db.query(
+//     `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
+//     [data.date, data.mood, data.comment, data.emotion]
+//   );
+//   await res.json(query.rows);
+//   console.log(data);
+// });
