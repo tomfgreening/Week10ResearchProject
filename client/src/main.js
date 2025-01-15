@@ -1,34 +1,3 @@
-const tempArray = [
-  { date: "01", emotion: "Sad", comment: "None" },
-  { date: "02", emotion: "Angry", comment: "None" },
-  { date: "03", emotion: "Calm", comment: "None" },
-  { date: "04", emotion: "Anxious", comment: "None" },
-  { date: "05", emotion: "Tired", comment: "None" },
-  { date: "06", emotion: "Energetic", comment: "None" },
-  { date: "07", emotion: "Sad", comment: "None" },
-  { date: "08", emotion: "Angry", comment: "None" },
-  { date: "09", emotion: "Calm", comment: "None" },
-  { date: "10", emotion: "Anxious", comment: "None" },
-  { date: "11", emotion: "Tired", comment: "None" },
-  { date: "12", emotion: "Energetic", comment: "None" },
-  { date: "13", emotion: "Sad", comment: "None" },
-  { date: "14", emotion: "Angry", comment: "None" },
-  { date: "15", emotion: "Calm", comment: "None" },
-  { date: "16", emotion: "Anxious", comment: "None" },
-  { date: "17", emotion: "Tired", comment: "None" },
-  { date: "18", emotion: "Energetic", comment: "None" },
-  { date: "19", emotion: "Sad", comment: "None" },
-  { date: "20", emotion: "Angry", comment: "None" },
-  { date: "21", emotion: "Calm", comment: "None" },
-  { date: "22", emotion: "Tired", comment: "None" },
-  { date: "23", emotion: "Energetic", comment: "None" },
-  { date: "24", emotion: "Calm", comment: "None" },
-  { date: "25", emotion: "Anxious", comment: "None" },
-  { date: "26", emotion: "Tired", comment: "None" },
-  { date: "27", emotion: "Energetic", comment: "None" },
-  { date: "28", emotion: "Happy", comment: "None" },
-];
-
 async function fetchMoodEntry() {
   const response = await fetch("http://localhost:8080/moodthing");
   const data = await response.json();
@@ -79,6 +48,7 @@ async function fetchMoodEntry() {
     popupBox.style.display = "none";
     popupOver.style.gridTemplateColumns = "1fr 7fr 1fr";
     popupOver.style.gridTemplateRows = "1fr 7fr";
+    popupBox.style.gridArea = "1 / 1 / 3 / 4";
     popupOver.appendChild(popupBox);
 
     // Creates the close button for the popup box
@@ -94,10 +64,29 @@ async function fetchMoodEntry() {
 
     const popupBoxText = document.createElement("p");
     popupBoxText.setAttribute("class", "popupBoxText");
-    popupBoxText.textContent = `Date: ${entry.date}
-    Emotion: ${entry.mood}
-    Comment: ${entry.comment}`;
+    popupBoxText.style.gridArea = "2 / 2 / 3 / 3";
+    popupBoxText.textContent = `Date: ${entry.date}`;
+
+    const popupBoxText2 = document.createElement("p");
+    popupBoxText2.setAttribute("class", "popupBoxText");
+    popupBoxText2.style.gridArea = "2 / 2 / 3 / 3";
+    popupBoxText2.textContent = `Emotion: ${entry.mood}`;
+
+    const popupBoxText3 = document.createElement("p");
+    popupBoxText3.setAttribute("class", "popupBoxText");
+    popupBoxText3.style.gridArea = "2 / 2 / 3 / 3";
+    popupBoxText3.textContent = `Comment:`;
+
+    const popupBoxText4 = document.createElement("p");
+    popupBoxText4.setAttribute("class", "popupBoxText");
+    popupBoxText4.style.gridArea = "2 / 2 / 3 / 3";
+    popupBoxText4.style.height = "50%";
+    popupBoxText4.textContent = `${entry.comment}`;
+
     popupBox.appendChild(popupBoxText);
+    popupBox.appendChild(popupBoxText2);
+    popupBox.appendChild(popupBoxText3);
+    popupBox.appendChild(popupBoxText4);
 
     // Creates javascript to add into the individual boxes to enable targetting each box on click
 
@@ -114,7 +103,7 @@ async function fetchMoodEntry() {
     indivBox${entry.id}.addEventListener("click", function(){
     const popupBox2 = document.querySelector("#popupBox${entry.id}");
     const popupBoxAll = document.querySelector(".popbox");
-    popupBox${entry.id}.style.display = "flex";
+    popupBox${entry.id}.style.display = "initial";
     popupOver.style.gridArea = "2 / 2 / 4 / 5";
 
 
@@ -151,30 +140,32 @@ function handleSubmitMessageForm(event) {
     body: JSON.stringify({ formValues }),
   });
   console.log(formValues);
-}
-messageForm.addEventListener("submit", handleSubmitMessageForm);
-
-
-// Code to add pop up when user submits form
-
-const submitButton = document.getElementById("button");
-button.addEventListener("click", function () {
-  // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
-  // alert("Please complete the form!");
-  // } else {
   alert("Your mood entry was submitted!");
   messageForm.submit();
   messageForm.reset();
   return false;
-});
+}
+messageForm.addEventListener("submit", handleSubmitMessageForm);
+
+// Code to add pop up when user submits form
+
+// const submitButton = document.getElementById("button");
+// button.addEventListener("click", function () {
+//   // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
+//   // alert("Please complete the form!");
+//   // } else {
+//   alert("Your mood entry was submitted!");
+//   messageForm.submit();
+//   messageForm.reset();
+//   return false;
+// });
 
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
   const query = await db.query(
-    `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
-    [data.date, data.mood, data.comment, data.emotion]
+    `INSERT INTO moods (date, mood, comment) VALUES ($1, $2, $3)`,
+    [data.date, data.mood, data.comment]
   );
   await res.json(query.rows);
   console.log(data);
 });
-

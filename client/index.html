@@ -19,14 +19,26 @@
       }
     </style>
   </head>
-
   <body>
     <div class="navBar">
       <nav>
-        <a href="#formBox">How are you feeling today?</a>
+        <a href="#formBox" id="navLink">How are you feeling today?</a>
       </nav>
+      <div id="logo">
+        <img src="./mood thing logo.png" alt="Smiling sun drawing with text reading 'mood thing'">
+      </div>
     </div>
     <div id="calendar" role="button"></div>
+    <div id="key">
+      <div id="keyMain">Key:</div>
+      <div class="keys" id="keyHappy">Happy</div>
+      <div class="keys" id="keySad">Sad</div>
+      <div class="keys" id="keyAngry">Angry</div>
+      <div class="keys" id="keyCalm">Calm</div>
+      <div class="keys" id="keyAnxious">Anxious</div>
+      <div class="keys" id="keyEnergetic">Energetic</div>
+      <div class="keys" id="keyTired">Tired</div>
+    </div>
     <div id="popupOver"></div>
     <div id="formBox">
       <form id="moods">
