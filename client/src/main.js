@@ -136,6 +136,8 @@ function handleSubmitMessageForm(event) {
   event.preventDefault();
   const formData = new FormData(messageForm);
   const formValues = Object.fromEntries(formData);
+  const dateValue = $("#datepicker").val();
+  formValues.date = dateValue;
   fetch("http://localhost:8080/moodTrackerEntry", {
     method: "POST",
     headers: {
@@ -146,6 +148,14 @@ function handleSubmitMessageForm(event) {
   console.log(formValues);
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
+
+const submitButton = document.getElementById("button");
+button.addEventListener("click", function () {
+  // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
+  // alert("Please complete the form!");
+  // } else {
+  alert("Your mood entry was submitted!");
+});
 
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
