@@ -85,23 +85,32 @@ body {
 }
 
 .navBar {
-  grid-area: 2 / 3 / 3 / 4;
+  grid-area: 1/ 3 / 3 / 4;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Lucida Handwriting", cursive;
   color: black;
   font-weight: 800;
-  font-size: xx-large;
+  font-size: 5rem;
   text-decoration: underline;
 }
 
-#navLink:visited {
+
+
+.navBar a {
   color: black;
 }
 
-#navLink:hover {
-  color: #e881a6;
+.navBar a:visited {
+  color: black;
+}
+
+#logo {
+  display: flex;
+  justify-content: right;
+  height: 15rem;
+  width: 15rem;
 }
 
 #calendar {
