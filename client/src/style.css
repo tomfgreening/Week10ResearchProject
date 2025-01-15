@@ -46,7 +46,7 @@ body {
   margin-top: 5px;
 }
 
-#moods .navBar {
+.navBar {
   grid-area: 2 / 3 / 3 / 4;
   display: flex;
   justify-content: center;
@@ -73,16 +73,12 @@ body {
   width: 100%;
 }
 
-.popupClose {
-  height: 100px;
-  width: 100px;
-}
-
 .calendarIndivBox {
   display: flex;
   flex-wrap: wrap;
   width: 14.28571428571429%;
-  aspect-ratio: 1 /1;
+  /* margin: 0.1437% */
+  aspect-ratio: 1 / 1;
   background-color: blue;
   border: solid 1px black;
 }
@@ -102,11 +98,21 @@ body {
   font-family: sans-serif Arial;
   font-size: x-large;
   grid-area: 2 / 2 / 2 / 2;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+}
+
+.popupClose {
+  height: 10%;
+  aspect-ratio: 1 /1;
+  grid-area: 4 / 4 / 5 / 5;
 }
 
 .popupBoxText {
-  display: flex;
-  grid-area: 3 / 3 / 4 / 4;
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+  /* grid-area: 3 / 3 / 4 / 4; */
 }
 
 /* End of Append Stuff */
