@@ -39,6 +39,7 @@ async function fetchMoodEntry() {
     const calendarIndivBox = document.createElement("div");
     calendarIndivBox.setAttribute("class", "calendarIndivBox");
     calendarIndivBox.setAttribute("id", `box${entry.id}`);
+    calendarIndivBox.style.aspectRatio = "1/1";
     calendar.appendChild(calendarIndivBox);
 
     // Sets box colour based on Mood
@@ -76,6 +77,8 @@ async function fetchMoodEntry() {
     popupBox.setAttribute("id", `popupBox${entry.id}`);
     popupBox.setAttribute("class", "popBox");
     popupBox.style.display = "none";
+    popupOver.style.gridTemplateColumns = "1fr 7fr 1fr";
+    popupOver.style.gridTemplateRows = "1fr 7fr";
     popupOver.appendChild(popupBox);
 
     // Creates the close button for the popup box
@@ -84,6 +87,7 @@ async function fetchMoodEntry() {
     popupClose.setAttribute("id", `popupClose${entry.id}`);
     popupClose.setAttribute("class", `popupClose`);
     popupClose.style.cursor = "pointer";
+    popupClose.textContent = "X";
     popupBox.appendChild(popupClose);
 
     // Creates the text in the popup box
@@ -113,6 +117,7 @@ async function fetchMoodEntry() {
     popupBox${entry.id}.style.display = "flex";
     popupOver.style.gridArea = "2 / 2 / 4 / 5";
 
+
     // Closes the associated pop up on clicking the close button
 
     const popupCloseButton = document.querySelector("#popupClose${entry.id}");
@@ -136,6 +141,8 @@ function handleSubmitMessageForm(event) {
   event.preventDefault();
   const formData = new FormData(messageForm);
   const formValues = Object.fromEntries(formData);
+  const dateValue = $("#datepicker").val();
+  formValues.date = dateValue;
   fetch("http://localhost:8080/moodTrackerEntry", {
     method: "POST",
     headers: {
@@ -147,6 +154,20 @@ function handleSubmitMessageForm(event) {
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
 
+
+// Code to add pop up when user submits form
+
+const submitButton = document.getElementById("button");
+button.addEventListener("click", function () {
+  // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
+  // alert("Please complete the form!");
+  // } else {
+  alert("Your mood entry was submitted!");
+  messageForm.submit();
+  messageForm.reset();
+  return false;
+});
+
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
   const query = await db.query(
@@ -156,3 +177,4 @@ app.post("/moodTrackerEntry", async (req, res) => {
   await res.json(query.rows);
   console.log(data);
 });
+
