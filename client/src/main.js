@@ -31,20 +31,15 @@ const tempArray = [
 
 function testStuff() {
   tempArray.slice(-35).forEach((entry) => {
-    // Consts
-    const popupOver = document.querySelector("#popupOver");
+    // Creates individual boxes for database entries
+
     const calendar = document.getElementById("calendar");
     const calendarIndivBox = document.createElement("div");
-    const calendarDate = document.createElement("p");
-    const popupBox = document.createElement("div");
-    const popupBoxText = document.createElement("p");
-    const popupClose = document.createElement("button");
-    const calendarScript = document.createElement("script");
-
     calendarIndivBox.setAttribute("class", "calendarIndivBox");
     calendarIndivBox.setAttribute("id", `box${entry.date}`);
-    calendarDate.setAttribute("class", "calendarDate");
-    calendarDate.textContent = `${entry.date}`;
+    calendar.appendChild(calendarIndivBox);
+
+    // Sets box colour based on emotion
 
     function indivBoxColor() {
       if (entry.emotion == "Happy") {
@@ -65,38 +60,61 @@ function testStuff() {
     }
     indivBoxColor();
 
-    popupBox.setAttribute("class", "popBox");
+    // Adds the date into the calendar boxes
 
+    const calendarDate = document.createElement("p");
+    calendarDate.setAttribute("class", "calendarDate");
+    calendarDate.textContent = `${entry.date}`;
+    calendarIndivBox.appendChild(calendarDate);
+
+    // Creates the pop up box and sets the display type to 'none' so it's invisible
+
+    const popupBox = document.createElement("div");
+    const popupOver = document.querySelector("#popupOver");
+    popupBox.setAttribute("id", `popupBox${entry.date}`);
+    popupBox.setAttribute("class", "popBox");
+    popupBox.style.display = "none";
+    popupOver.appendChild(popupBox);
+
+    // Creates the close button for the popup box
+
+    const popupClose = document.createElement("button");
+    popupClose.setAttribute("id", `popupClose${entry.date}`);
+    popupClose.setAttribute("class", `popupClose`);
+    popupClose.style.cursor = "pointer";
+    popupBox.appendChild(popupClose);
+
+    // Creates the text in the popup box
+
+    const popupBoxText = document.createElement("p");
     popupBoxText.setAttribute("class", "popupBoxText");
     popupBoxText.textContent = `Date: ${entry.date}
     Emotion: ${entry.emotion}
     Comment: ${entry.comment}`;
+    popupBox.appendChild(popupBoxText);
 
-    popupBox.setAttribute("id", `popupBox${entry.date}`);
-    popupBox.style.display = "none";
+    // Creates javascript to add into the individual boxes to enable targetting each box on click
 
-    popupClose.setAttribute("id", `popupClose${entry.date}`);
-    popupClose.setAttribute("class", `popupClose`);
-
-    // Completed
-
-    popupClose.style.cursor = "pointer";
-
-    // Embedded
+    const calendarScript = document.createElement("script");
 
     calendarScript.innerHTML = `const indivBox${entry.date} = document.querySelector("#box${entry.date}");
+    
+    // Changes properties of the boxes so that when you hover over them it changes the cursor to a hand
+
     indivBox${entry.date}.style.cursor = "pointer";
-    console.log(${entry.date});
+   
+    // Opens the associated pop up on clicking a calendar entry
+  
     indivBox${entry.date}.addEventListener("click", function(){
-    console.log("clicked ${entry.date}");
     const popupBox2 = document.querySelector("#popupBox${entry.date}");
-    console.log(popupBox2);
     const popupBoxAll = document.querySelector(".popbox");
     popupBox${entry.date}.style.display = "flex";
     popupOver.style.gridArea = "2 / 2 / 4 / 5";
+
+    // Closes the associated pop up on clicking the close button
+
     const popupCloseButton = document.querySelector("#popupClose${entry.date}");
     popupCloseButton.addEventListener("click", function (){
-    console.log('Worked');
     popupOver.style.gridArea = "2 / 2 / 2 / 2";
     popupBox${entry.date}.style.display = "none";})
     ;
@@ -105,13 +123,6 @@ function testStuff() {
     `;
     calendarScript.defer = true;
 
-    // Appends
-
-    calendar.appendChild(calendarIndivBox);
-    calendarIndivBox.appendChild(calendarDate);
-    popupBox.appendChild(popupBoxText);
-    popupOver.appendChild(popupBox);
-    popupBox.appendChild(popupClose);
     calendarIndivBox.appendChild(calendarScript);
   });
 }
@@ -142,4 +153,5 @@ app.post("/moodTrackerEntry", async (req, res) => {
     [data.date, data.mood, data.comment, data.emotion]
   );
   await res.json(query.rows);
+  console.log(data);
 });
