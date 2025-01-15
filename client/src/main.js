@@ -151,30 +151,32 @@ function handleSubmitMessageForm(event) {
     body: JSON.stringify({ formValues }),
   });
   console.log(formValues);
-}
-messageForm.addEventListener("submit", handleSubmitMessageForm);
-
-
-// Code to add pop up when user submits form
-
-const submitButton = document.getElementById("button");
-button.addEventListener("click", function () {
-  // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
-  // alert("Please complete the form!");
-  // } else {
   alert("Your mood entry was submitted!");
   messageForm.submit();
   messageForm.reset();
   return false;
-});
+}
+messageForm.addEventListener("submit", handleSubmitMessageForm);
+
+// Code to add pop up when user submits form
+
+// const submitButton = document.getElementById("button");
+// button.addEventListener("click", function () {
+//   // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
+//   // alert("Please complete the form!");
+//   // } else {
+//   alert("Your mood entry was submitted!");
+//   messageForm.submit();
+//   messageForm.reset();
+//   return false;
+// });
 
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
   const query = await db.query(
-    `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
-    [data.date, data.mood, data.comment, data.emotion]
+    `INSERT INTO moods (date, mood, comment) VALUES ($1, $2, $3)`,
+    [data.date, data.mood, data.comment]
   );
   await res.json(query.rows);
   console.log(data);
 });
-
