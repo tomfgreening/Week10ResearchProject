@@ -72,6 +72,7 @@ body {
   font-family: "Lucida Handwriting", cursive;
   font-weight: 800;
   font-size: xx-large;
+  text-decoration: underline;
 }
 
 #calendar {
