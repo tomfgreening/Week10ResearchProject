@@ -30,9 +30,11 @@ const tempArray = [
 ];
 
 async function fetchMoodEntry() {
-  const result = await fetch("http://localhost:8080/moodthing");
-  // need to json and stringify data.
+  const response = await fetch("http://localhost:8080/moodthing");
+  const moods = await response.json();
+  JSON.stringify(moods);
 }
+fetchMoodEntry();
 
 function testStuff() {
   tempArray.slice(-35).forEach((entry) => {
