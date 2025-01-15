@@ -31,37 +31,32 @@ const tempArray = [
 
 async function fetchMoodEntry() {
   const response = await fetch("http://localhost:8080/moodthing");
-  const moods = await response.json();
-  JSON.stringify(moods);
-}
-fetchMoodEntry();
-
-function testStuff() {
-  tempArray.slice(-35).forEach((entry) => {
+  const data = await response.json();
+  console.log(data);
+  data.slice(-35).forEach((entry) => {
     // Creates individual boxes for database entries
-
     const calendar = document.getElementById("calendar");
     const calendarIndivBox = document.createElement("div");
     calendarIndivBox.setAttribute("class", "calendarIndivBox");
-    calendarIndivBox.setAttribute("id", `box${entry.date}`);
+    calendarIndivBox.setAttribute("id", `box${entry.id}`);
     calendar.appendChild(calendarIndivBox);
 
-    // Sets box colour based on emotion
+    // Sets box colour based on Mood
 
     function indivBoxColor() {
-      if (entry.emotion == "Happy") {
+      if (entry.mood == "Happy") {
         calendarIndivBox.style.backgroundColor = "#CE3375";
-      } else if (entry.emotion == "Angry") {
+      } else if (entry.mood == "Angry") {
         calendarIndivBox.style.backgroundColor = "#1b5091";
-      } else if (entry.emotion == "Sad") {
+      } else if (entry.mood == "Sad") {
         calendarIndivBox.style.backgroundColor = "#6ea1d4";
-      } else if (entry.emotion == "Calm") {
+      } else if (entry.mood == "Calm") {
         calendarIndivBox.style.backgroundColor = "#60c8b3";
-      } else if (entry.emotion == "Anxious") {
+      } else if (entry.mood == "Anxious") {
         calendarIndivBox.style.backgroundColor = "#e881a6";
-      } else if (entry.emotion == "Tired") {
+      } else if (entry.mood == "Tired") {
         calendarIndivBox.style.backgroundColor = "#ffa74f";
-      } else if (entry.emotion == "Energetic") {
+      } else if (entry.mood == "Energetic") {
         calendarIndivBox.style.backgroundColor = "#279d9f";
       }
     }
@@ -78,7 +73,7 @@ function testStuff() {
 
     const popupBox = document.createElement("div");
     const popupOver = document.querySelector("#popupOver");
-    popupBox.setAttribute("id", `popupBox${entry.date}`);
+    popupBox.setAttribute("id", `popupBox${entry.id}`);
     popupBox.setAttribute("class", "popBox");
     popupBox.style.display = "none";
     popupOver.appendChild(popupBox);
@@ -86,7 +81,7 @@ function testStuff() {
     // Creates the close button for the popup box
 
     const popupClose = document.createElement("button");
-    popupClose.setAttribute("id", `popupClose${entry.date}`);
+    popupClose.setAttribute("id", `popupClose${entry.id}`);
     popupClose.setAttribute("class", `popupClose`);
     popupClose.style.cursor = "pointer";
     popupBox.appendChild(popupClose);
@@ -96,7 +91,7 @@ function testStuff() {
     const popupBoxText = document.createElement("p");
     popupBoxText.setAttribute("class", "popupBoxText");
     popupBoxText.textContent = `Date: ${entry.date}
-    Emotion: ${entry.emotion}
+    Emotion: ${entry.mood}
     Comment: ${entry.comment}`;
     popupBox.appendChild(popupBoxText);
 
@@ -104,26 +99,26 @@ function testStuff() {
 
     const calendarScript = document.createElement("script");
 
-    calendarScript.innerHTML = `const indivBox${entry.date} = document.querySelector("#box${entry.date}");
+    calendarScript.innerHTML = `const indivBox${entry.id} = document.querySelector("#box${entry.id}");
     
     // Changes properties of the boxes so that when you hover over them it changes the cursor to a hand
 
-    indivBox${entry.date}.style.cursor = "pointer";
+    indivBox${entry.id}.style.cursor = "pointer";
    
     // Opens the associated pop up on clicking a calendar entry
   
-    indivBox${entry.date}.addEventListener("click", function(){
-    const popupBox2 = document.querySelector("#popupBox${entry.date}");
+    indivBox${entry.id}.addEventListener("click", function(){
+    const popupBox2 = document.querySelector("#popupBox${entry.id}");
     const popupBoxAll = document.querySelector(".popbox");
-    popupBox${entry.date}.style.display = "flex";
+    popupBox${entry.id}.style.display = "flex";
     popupOver.style.gridArea = "2 / 2 / 4 / 5";
 
     // Closes the associated pop up on clicking the close button
 
-    const popupCloseButton = document.querySelector("#popupClose${entry.date}");
+    const popupCloseButton = document.querySelector("#popupClose${entry.id}");
     popupCloseButton.addEventListener("click", function (){
     popupOver.style.gridArea = "2 / 2 / 2 / 2";
-    popupBox${entry.date}.style.display = "none";})
+    popupBox${entry.id}.style.display = "none";})
     ;
 });
     ;
@@ -133,8 +128,7 @@ function testStuff() {
     calendarIndivBox.appendChild(calendarScript);
   });
 }
-
-testStuff();
+fetchMoodEntry();
 
 const messageForm = document.querySelector("#moods");
 
@@ -152,6 +146,7 @@ function handleSubmitMessageForm(event) {
   console.log(formValues);
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
+
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
   const query = await db.query(
@@ -161,4 +156,3 @@ app.post("/moodTrackerEntry", async (req, res) => {
   await res.json(query.rows);
   console.log(data);
 });
-
