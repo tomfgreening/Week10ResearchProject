@@ -61,9 +61,10 @@ body {
 /* .ui-datepicker {
   background-color: #ffffff;
   border: 1px solid #ccc;
-  padding: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-} */
+  display: none;
+}
+
 
 #moodSelect {
   width: 100%;
