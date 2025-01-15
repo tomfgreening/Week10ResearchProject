@@ -141,6 +141,8 @@ function handleSubmitMessageForm(event) {
   event.preventDefault();
   const formData = new FormData(messageForm);
   const formValues = Object.fromEntries(formData);
+  const dateValue = $("#datepicker").val();
+  formValues.date = dateValue;
   fetch("http://localhost:8080/moodTrackerEntry", {
     method: "POST",
     headers: {
@@ -152,12 +154,27 @@ function handleSubmitMessageForm(event) {
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
 
-// app.post("/moodTrackerEntry", async (req, res) => {
-//   const data = req.body.formValues;
-//   const query = await db.query(
-//     `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
-//     [data.date, data.mood, data.comment, data.emotion]
-//   );
-//   await res.json(query.rows);
-//   console.log(data);
-// });
+
+// Code to add pop up when user submits form
+
+const submitButton = document.getElementById("button");
+button.addEventListener("click", function () {
+  // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
+  // alert("Please complete the form!");
+  // } else {
+  alert("Your mood entry was submitted!");
+  messageForm.submit();
+  messageForm.reset();
+  return false;
+});
+
+app.post("/moodTrackerEntry", async (req, res) => {
+  const data = req.body.formValues;
+  const query = await db.query(
+    `INSERT INTO moods (col1, col2, col3, col4) VALUES ($1, $2, $3, $4)`,
+    [data.date, data.mood, data.comment, data.emotion]
+  );
+  await res.json(query.rows);
+  console.log(data);
+});
+

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./src/style.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <script>
       $(function () {
         $("#datepicker").datepicker();
@@ -23,29 +22,36 @@
     <div id="popupOver"></div>
     <div id="formBox">
       <form id="moods">
-        <label for="date">Date</label>
-        <input type="text" placeholder="Date" id="datepicker" required />
-        <label for="mood">How are you feeling today?</label>
-        <select id="moodSelect" name="mood">
-          <option value="">Select Mood</option>
-          <option value="Happy">Happy</option>
-          <option value="Sad">Sad</option>
-          <option value="Angry">Angry</option>
-          <option value="Calm">Calm</option>
-          <option value="Anxious">Anxious</option>
-          <option value="Energetic">Energetic</option>
-          <option value="Tired">Tired</option>
-        </select>
-        <label for="comment">Comments</label>
-        <input
-          type="text"
-          size="50"
-          style="width: 400px; height: 40px"
-          placeholder="Comments"
-          name="comment"
-          id="comment"
-          required
-        />
+        <div id="form-row">
+          <label for="date">Date</label>
+          <input type="text" placeholder="Date" id="datepicker" required />
+        </div>
+        <div id="form-row">
+          <label for="mood">How are you feeling today?</label>
+          <select id="moodSelect" name="mood">
+            <option value="">Select Mood</option>
+            <option value="Happy">Happy</option>
+            <option value="Sad">Sad</option>
+            <option value="Angry">Angry</option>
+            <option value="Calm">Calm</option>
+            <option value="Anxious">Anxious</option>
+            <option value="Energetic">Energetic</option>
+            <option value="Tired">Tired</option>
+          </select>
+        </div>
+        <div id="form-row">
+          <label for="comment">Comments</label>
+          <input
+            type="text"
+            size="50"
+            style="width: 400px; height: 40px"
+            placeholder="Comments"
+            name="comment"
+            id="comment"
+            required
+          />
+        </div>
+
         <button type="submit" id="button">Submit</button>
       </form>
     </div>
