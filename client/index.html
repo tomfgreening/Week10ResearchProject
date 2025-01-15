@@ -13,10 +13,18 @@
         $("#datepicker").datepicker();
       });
     </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
+
   <body>
     <div class="navBar">
-      <nav>How are you today?</nav>
+      <nav>
+        <a href="#formBox">How are you feeling today?</a>
+      </nav>
     </div>
     <div id="calendar" role="button"></div>
     <div id="popupOver"></div>
@@ -51,7 +59,6 @@
             required
           />
         </div>
-
         <button type="submit" id="button">Submit</button>
       </form>
     </div>
