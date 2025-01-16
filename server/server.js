@@ -31,8 +31,8 @@ app.get("/moodthing", async (req, res) => {
 app.post("/moodTrackerEntry", async (req, res) => {
   const data = req.body.formValues;
   const query = await db.query(
-    `INSERT INTO moods (date, mood, comment) VALUES ($1, $2, $3)`,
-    [data.date, data.mood, data.comment]
+    `INSERT INTO moods (date, mood, comment, emoji) VALUES ($1, $2, $3, $4)`,
+    [data.date, data.mood, data.comment, data.emoji]
   );
   await res.json(query.rows);
 });
