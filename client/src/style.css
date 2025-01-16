@@ -133,6 +133,14 @@ body {
   border-style: solid;
 }
 
+#calendar {
+  align-content: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: 3 / 3 / 4 / 4;
+  border: solid 1px black;
+}
+
 /* End Logo Stuff */
 
 /* Key */
@@ -282,16 +290,20 @@ body {
 @media (max-width: 480px) {
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (orientation: portrait) {
   .body {
     font-size: 5px;
   }
 
   .navBar {
-    font-size: 2rem;
+    font-size: 3rem;
     grid-area: 2/3;
     display: flex;
-    justify-content: left;
+    justify-content: center;
+  }
+
+  .calendarIndivBox {
+    width: 25%;
   }
 
   #logo {
@@ -299,20 +311,18 @@ body {
     justify-content: center;
   }
 
-  #calendar {
-    /* font size for data entries needs adjusting */
-    height: 50%;
-    width: 50%;
-  }
-
-  #key {
-  }
-
-  .keys {
+  #formBox {
+    height: 85%;
+    width: 100%;
     font-size: small;
+    display: flex;
+    justify-content: center;
   }
 
-  #formbox {
+  .calendarDate {
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: right;
   }
 }
 
