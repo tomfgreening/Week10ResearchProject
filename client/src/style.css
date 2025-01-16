@@ -12,6 +12,8 @@ body {
   font-family: Arial;
 }
 
+/* Form Stuff */
+
 #button {
   background-color: #008cba;
   border: none;
@@ -33,7 +35,7 @@ body {
 }
 
 #formBox {
-  grid-area: 4 / 3 / 6 / 4;
+  grid-area: 4 / 3 / 5 / 4;
   width: 100%;
   padding: 75px;
   border: 1px solid black;
@@ -89,6 +91,10 @@ body {
   margin-top: 5px;
 }
 
+/* End Form Stuff */
+
+/* Nav Bar Stuff */
+
 .navBar {
   grid-area: 1/ 3 / 3 / 4;
   display: flex;
@@ -109,6 +115,9 @@ body {
   color: black;
 }
 
+/* End Nav Bar Stuff */
+
+/* Logo Stuff */
 #logo {
   padding-top: 25px;
   padding-right: 25px;
@@ -132,6 +141,8 @@ body {
   border: solid 1px black;
 }
 
+/* End Logo Stuff */
+
 /* Key */
 
 #key {
@@ -144,7 +155,7 @@ body {
 
 .keys {
   display: flex;
-  height: 10%;
+  width: 75%;
   aspect-ratio: 1 / 1;
   border: solid black 2px;
   justify-content: center;
@@ -187,6 +198,13 @@ body {
 /* Key End */
 
 /* Append Stuff */
+
+#calendar {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: 3 / 3 / 4 / 4;
+  border: solid 1px black;
+}
 
 #popupOver {
   grid-area: 2 / 2 / 2 / 2;
