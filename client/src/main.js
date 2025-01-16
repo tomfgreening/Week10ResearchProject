@@ -1,5 +1,5 @@
 async function fetchMoodEntry() {
-  const response = await fetch("https://moodthing-1.onrender.com");
+  const response = await fetch("https://moodthing-0hlh.onrender.com/moodthing");
   const data = await response.json();
   console.log(data);
   data.slice(-35).forEach((entry) => {
@@ -165,7 +165,7 @@ function handleSubmitMessageForm(event) {
   const formValues = Object.fromEntries(formData);
   const dateValue = $("#datepicker").val();
   formValues.date = dateValue;
-  fetch("https://moodthing-1.onrender.com/moodTrackerEntry", {
+  fetch("https://moodthing-0hlh.onrender.com/moodTrackerEntry", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
