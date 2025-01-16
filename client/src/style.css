@@ -160,7 +160,10 @@ body {
   border: solid black 2px;
   justify-content: center;
   align-items: center;
-  color: #f8dede;
+  color: black;
+  font-size: 1.5rem;
+  /* -webkit-text-stroke-width: 0.5px; */
+  -webkit-text-stroke-color: black;
 }
 
 #keyMain {
