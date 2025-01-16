@@ -2,7 +2,7 @@ async function fetchMoodEntry() {
   const response = await fetch("https://moodthing-0hlh.onrender.com/moodthing");
   const data = await response.json();
   console.log(data);
-  data.slice(-35).forEach((entry) => {
+  data.forEach((entry) => {
     // Creates individual boxes for database entries
     const calendar = document.getElementById("calendar");
     const calendarIndivBox = document.createElement("div");
