@@ -36,7 +36,40 @@ async function fetchMoodEntry() {
 
     const calendarDate = document.createElement("p");
     calendarDate.setAttribute("class", "calendarDate");
-    calendarDate.textContent = `${entry.date} ${entry.emoji}`;
+    let emojisFace = "😁";
+    function emojis() {
+      if (entry.emoji == 128513) {
+        emojisFace = `😁`;
+      } else if (entry.emoji == 128546) {
+        emojisFace = `😢`;
+      } else if (entry.emoji == 128548) {
+        emojisFace = `😤`;
+      } else if (entry.emoji == 128545) {
+        emojisFace = `😡`;
+      } else if (entry.emoji == 128564) {
+        emojisFace = `😴`;
+      } else if (entry.emoji == 129298) {
+        emojisFace = `🤒`;
+      } else if (entry.emoji == 129314) {
+        emojisFace = `🤢`;
+      } else if (entry.emoji == 129392) {
+        emojisFace = `🥰`;
+      } else if (entry.emoji == 129402) {
+        emojisFace = `🥺`;
+      } else if (entry.emoji == 129398) {
+        emojisFace = `🥶`;
+      } else if (entry.emoji == 129397) {
+        emojisFace = `🥵`;
+      } else if (entry.emoji == 129395) {
+        emojisFace = `🥳`;
+      } else if (entry.emoji == 129396) {
+        emojisFace = `🥴`;
+      } else if (entry.emoji == 129324) {
+        emojisFace = `🤬`;
+      }
+    }
+    emojis();
+    calendarDate.textContent = `${entry.date} ${emojisFace}`;
     calendarIndivBox.appendChild(calendarDate);
 
     // Creates the pop up box and sets the display type to 'none' so it's invisible
@@ -146,27 +179,3 @@ function handleSubmitMessageForm(event) {
   return false;
 }
 messageForm.addEventListener("submit", handleSubmitMessageForm);
-
-// Code to add pop up when user submits form
-
-// const submitButton = document.getElementById("button");
-// button.addEventListener("click", function () {
-//   // if (datepicker.value.trim() === "" || moodSelect.value.trim() === "" || comment.value.trim() === "") {
-//   // alert("Please complete the form!");
-//   // } else {
-//   alert("Your mood entry was submitted!");
-//   messageForm.submit();
-//   messageForm.reset();
-//   return false;
-// });
-
-app.post("/moodTrackerEntry", async (req, res) => {
-  const data = req.body.formValues;
-  const hex = data.emoji.codePointAt(0).toString(16);
-  const query = await db.query(
-    `INSERT INTO moods (date, mood, comment) VALUES ($1, $2, $3, $4)`,
-    [data.date, data.mood, data.comment, hex]
-  );
-  await res.json(query.rows);
-  console.log(data);
-});
