@@ -1,5 +1,5 @@
 async function fetchMoodEntry() {
-  const response = await fetch("http://localhost:8080/moodthing");
+  const response = await fetch("https://moodthing-0hlh.onrender.com/moodthing");
   const data = await response.json();
   console.log(data);
   data.forEach((entry) => {
