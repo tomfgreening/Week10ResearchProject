@@ -24,7 +24,7 @@ const db = new pg.Pool({
 });
 
 app.get("/moodthing", async (req, res) => {
-  const query = await db.query("SELECT * FROM moods");
+  const query = await db.query("SELECT * FROM moods ORDER BY ID");
   await res.json(query.rows);
 });
 
