@@ -1,5 +1,10 @@
-import { Accessibility } from "accessibility";
-
+window.addEventListener(
+  "load",
+  function () {
+    new Accessibility();
+  },
+  false
+);
 async function fetchMoodEntry() {
   const response = await fetch(
     "https://week10researchproject.onrender.com/moodthing"
@@ -14,9 +19,8 @@ async function fetchMoodEntry() {
     calendarIndivBox.setAttribute("id", `box${entry.id}`);
     calendarIndivBox.style.aspectRatio = "1/1";
     calendar.appendChild(calendarIndivBox);
-
     // Sets box colour based on Mood
-
+    console.log("javascript okay until here");
     function indivBoxColor() {
       if (entry.mood == "Happy") {
         calendarIndivBox.style.backgroundColor = "#CE3375";
