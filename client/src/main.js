@@ -169,7 +169,7 @@ function handleSubmitMessageForm(event) {
   const formValues = Object.fromEntries(formData);
   const dateValue = $("#datepicker").val();
   formValues.date = dateValue;
-  fetch("https://moodthing-0hlh.onrender.com/moodTrackerEntry", {
+  fetch("https://week10researchproject.onrender.com/moodTrackerEntry", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
