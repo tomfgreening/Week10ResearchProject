@@ -1,3 +1,5 @@
+import { Accessibility } from 'accessibility';
+
 async function fetchMoodEntry() {
   const response = await fetch("https://moodthing-0hlh.onrender.com/moodthing");
   const data = await response.json();
