@@ -1,5 +1,6 @@
 import express from "express";
 const app = express();
+const __dirname = path.resolve();
 
 import cors from "cors";
 app.use(cors());
@@ -8,10 +9,14 @@ import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 
-app.use(express.json());
+app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
 });
 
 app.get("/", (req, res) => {
