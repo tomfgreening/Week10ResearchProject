@@ -8,7 +8,8 @@ import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.static(path.join(__dirname, "js")));
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");

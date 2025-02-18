@@ -5,6 +5,7 @@ window.addEventListener(
   },
   false
 );
+
 async function fetchMoodEntry() {
   const response = await fetch(
     "https://week10researchproject.onrender.com/moodthing"
